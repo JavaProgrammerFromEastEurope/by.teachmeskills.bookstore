@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:fragment="common-header">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>BookStore</title>
+    <link rel="stylesheet" th:href="@{/static/css/style.css}" crossorigin="anonymous"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.css"/>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"/>
+</head>
+<body>
+<div th:fragment="navbar">
+    <div class="page-top"></div>
+    <!-- static navbar -->
+    <nav class="navbar navbar-default navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" th:href="@{/}"> BOOKSTORE </a>
+            </div>
+            <div id="navbar">
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="dropdown">
+                        <a th:href="@{/bookshelf}" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true"
+                           aria-expanded="false">BOOKS <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{/bookshelf}">Browse the bookshelf</a></li>
+                            <li><a th:href="@{/hours}">Store hours &#38; Directions</a></li>
+                            <li><a th:href="@{/faq}">FAQ</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <form class="navbar-form" th:action="@{/searchBook}" method="post">
+                            <div class="form-group">
+                                <input type="text" name="keyword" class="form-control" placeholder="Book title"/>
+                                <button type="submit" class="btn btn-default">Search</button>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a th:href="@{/shoppingCart/cart}">SHOPPING CART</a></li>
+                    <li><a sec:authorize="isAnonymous()" th:href="@{/login}">MY ACCOUNT</a></li>
+                    <li><a sec:authorize="isAuthenticated()" th:href="@{/myProfile}">MY ACCOUNT</a></li>
+                    <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">LOGOUT</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</div>
+<div th:fragment="footer">
+    <br/><br/>
+    <footer>
+        <div class="row">
+            <div class="col-xs-3 footerleft">
+                <div class="logofooter">
+                    <a th:href="@{/}">
+                        <!--<img class="img-responsive" style="width:200px" />-->
+                    </a>
+                </div>
+                <p>Independent Book Store.<br/>Serving our customers with the best.</p>
+            </div>
+            <div class="col-xs-6 paddingtop-bottom">
+                <h6 class="heading7">CONTACT</h6>
+                <ul class="post">
+                    <p><i class="fas fa-map-pin"></i>123 XXX Ave<br/> Boston MA, USA 02112</p>
+                    <p><i class="fas fa-phone"></i>Phone (USA) : +1 999 999 9999</p>
+                    <p><i class="fas fa-envelope"></i>E-mail : info@bookstore.com</p>
+                </ul>
+            </div>
+            <div class="col-xs-3 paddingtop-bottom">
+                <h6 class="heading7">LINKS</h6>
+                <ul class="footer-ul">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms $#38; Conditions</a></li>
+                    <li><a href="#">Frequently Ask Question</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-3 paddingtop-bottom">
+                <h6 class="heading7">STORE HOURS</h6>
+                <div class="post">
+                    <p>Monday - Friday: 9am - 11pm</p>
+                    <p>Saturday: 10am - 6pm</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div>
+        <div class="copyright"></div>
+        <div class="col-md-6">
+            <p>@ 2019 - All Right Reserved</p>
+        </div>
+        <div class="col-md-6">
+            <ul class="bottom-ul">
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Faq's</a></li>
+                <li><a href="#">Contact us</a></li>
+                <li><a href="#">Site Map</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div th:fragment="body-bottom-scripts">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+            crossorigin="anonymous"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+            integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+            crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/b949bb2a21.js"></script>
+    <!--datatable-->
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+    <!--tinymce-->
+    <script src="https://cdn.tiny.cloud/1/miivhf4qywiipn2ht7ytv5z00lyi29xc27rlk8o1avjdomhs/tinymce/5/tinymce.min.js"></script>
+    <script src="/static/js/scripts.js"></script>
+    <script>tinymce.init({selector: 'textarea'});</script>
+</div>
+</body>
+</html>

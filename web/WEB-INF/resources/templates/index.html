@@ -1,0 +1,28 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"></head>
+<body>
+<div th:replace="common/header :: navbar"></div>
+
+<div class="container containers ">
+    <!--container-->
+
+    <div th:replace="common/carousel-first :: carousel-first"></div>
+
+    <hr class="hr"/>
+
+    <div th:replace="common/service-row :: service-row"></div>
+
+    <div>
+        <div class="home-headline">
+            <span>Featured Books</span>
+            <hr class="hr"/>
+        </div>
+    </div>
+
+    <div th:replace="common/carousel-second :: carousel-second"></div>
+</div>
+<!--end of container-->
+<div th:replace="common/header :: footer"></div>
+<div th:replace="common/header :: body-bottom-scripts"></div>
+</body>
+</html>

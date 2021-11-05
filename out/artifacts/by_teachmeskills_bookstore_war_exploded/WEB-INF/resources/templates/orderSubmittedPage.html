@@ -1,0 +1,55 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"></head>
+<body>
+
+<div th:replace="common/header :: navbar"></div>
+
+<div class="container containers ">
+    <div class="row">
+        <div class="col-xs-8">
+            <h2 class="section-headline">
+                <span>User Account</span></h2>
+        </div>
+        <hr class="hr1" style="margin-top: 95px;"/>
+    </div>
+    <div class="row" style="margin-top:10px;">
+        <div class="col-xs-12">
+            <div class="row">
+                <div class="alert alert-success">
+                    <h3><i class="fas fa-check" aria-hidden="true" style="color: limegreen;"></i>
+                        Thank you, your order has been placed.</h3>
+                    <h4>The estimate delivery date is <span th:text="${estimatedDeliveryDate}"></span></h4>
+                </div>
+                <h3>List of Items</h3>
+                <div class="row" th:each="cartItem : ${cartItemList}">
+                    <hr class="hr1"/>
+                    <div class="col-xs-2">
+                        <!--display products in cart-->
+                        <a th:href="@{/bookDetail(id=${cartItem.book.id})}">
+                            <img class="img-responsive shelf-book"
+                                 th:src="#{adminPath}+@{/image/book/} +${cartItem.book.id} + '.png'"
+                                 style="width: 70px;"/>
+                        </a>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="center-block">
+                            <a th:href="@{/bookDetail?id=}+${cartItem.book.id}">
+                                <h4 th:text="${cartItem.book.title}"></h4></a>
+                        </div>
+                    </div>
+                    <div class="col-xs-2">
+                        <h5 style="color: #db3208;font-size: large;">$<span
+                                th:text="${cartItem.book.ourPrice}"
+                                th:style="${cartItem.book.inStockNumber}==0? 'text-decoration: line-through' : ''"></span>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end of container-->
+<div th:replace="common/header :: footer"></div>
+<div th:replace="common/header :: body-bottom-scripts"></div>
+</body>
+</html>
